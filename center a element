@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        .container-centered {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 200px;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-centered"><div class="panel panel-primary">
+    <div class="panel-heading text-center">Login</div>
+    <div class="panel-body">
+        <form id="form1" runat="server" role="form">
+            <div class="form-group">
+                <input type="text" placeholder="username" autofocus class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="password" placeholder="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary pull-right"><a href="homepage.aspx" style="color:white;">Login</a></button>
+            </div>
+            <a href="homepage.aspx" class="pull-left"> Forgot Password</a>
+        </form>
+    </div>
+</div></div>
+</body>
+</html>
