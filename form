@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <style>
+        #datepicker {
+            width: 180px;
+            margin: 0 20px 20px 0px;
+        }
+            #datepicker > span:hover {
+                cursor: pointer;
+            }
+   .btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#datepicker").click(function () {
+                $(this).datepicker({
+                    autoclose: true,
+                }).datepicker('update', new Date())
+            })
+        })
+        </script>
+</head>
+<body>
+ <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="background-color:#eeeeee;padding:2em;border-radius:20px;">
+            <center class="alert alert-success">Register</center>
+            <form role="form">
+                <div class="form-group">
+                    <label class="bg-success">Username</label>
+                    <input type="text" placeholder="username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="bg-success">Please Check What You Own</label><br />                    
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-success btn-sm" style="border-radius:50%;">
+                                <input type="checkbox">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label><label style="position:relative;top:10%;">Car</label>
+                       </div><br />                   
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-success btn-sm" style="border-radius:50%;">
+                                <input type="checkbox">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label><label>Bike</label>
+                        </div>
+                       </div>
+
+
+                <div class="form-group">
+                    <label class="bg-success">Select Date</label>
+                    <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
+                        <input class="form-control" type="text" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+
+
+             <label class="bg-success">Gender</label><br />
+                <label>
+                    Male/Female
+                </label><br />
+                <div class="radio">
+                    <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-warning btn-sm">
+                            <input type="radio" name="gender" id="male">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-danger btn-sm">
+                            <input type="radio" name="options" id="female">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                    </div>
+                </div>
+                     <div class="form-group">
+                      <label class="bg-success">Password</label>
+                        <input type="password" placeholder="password" class="form-control" />
+                    </div>
+                    <center class="form-group">
+                        <button class="btn btn-success">Register</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                    </center>
+</form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</body>
+</html>
