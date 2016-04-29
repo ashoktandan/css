@@ -10,21 +10,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
-    <style>
-        #datepicker {
-            width: 180px;
-            margin: 0 20px 20px 0px;
-        }
-            #datepicker > span:hover {
-                cursor: pointer;
-            }
-   .btn span.glyphicon {    			
-	opacity: 0;				
-}
-.btn.active span.glyphicon {				
-	opacity: 1;				
-}
-    </style>
     <script>
         $(document).ready(function () {
             $("#datepicker").click(function () {
@@ -34,72 +19,90 @@
             })
         })
         </script>
+    <style>
+          #datepicker {
+            width: 180px;
+            margin: 0 20px 20px 0px;
+        }
+            #datepicker > span:hover {
+                cursor: pointer;
+            }
+        input{
+            display:none;
+        }
+        input[type=checkbox]+ label:before{
+        content: "\2715";             
+	    display: inline-block;  
+	    width: 20px;  
+	    height: 20px;  
+	    vertical-align:middle;
+	    margin-right: 8px;   
+        }
+        input[type=checkbox]:checked+label:before{
+        content:"\2713";
+		text-align:center;
+		line-height:15px;
+	    text-shadow:0px 0px 3px #eee;
+	}
+        input[type=radio]+label:before{
+            content:'';
+            display:inline-block;
+            vertical-align:middle;
+            width:15px;
+            height:20px;
+        }
+        input[type=radio]:checked+label:before{
+            content:'\2714';
+            text-align:center;
+            text-shadow:0px 0px 3px #eee;
+            line-height:15px;
+        }
+    </style>
 </head>
 <body>
  <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" style="background-color:#eeeeee;padding:2em;border-radius:20px;">
-            <center class="alert alert-success">Register</center>
+            <center class="alert alert-success"><span class="glyphicon glyphicon-user"></span>Register</center>
             <form role="form">
-                <div class="form-group">
-                    <label class="bg-success">Username</label>
-                    <input type="text" placeholder="username" class="form-control" />
+          <div class="form-group">
+                    <label class="bg-success" for="u">Username</label>
+                    <input type="text" placeholder="username" class="form-control" id="u"/>
                 </div>
                 <div class="form-group">
-                    <label class="bg-success">Please Check What You Own</label><br />                    
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" style="border-radius:50%;">
-                                <input type="checkbox">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </label><label style="position:relative;top:10%;">Car</label>
-                       </div><br />                   
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-success btn-sm" style="border-radius:50%;">
-                                <input type="checkbox">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </label><label>Bike</label>
-                        </div>
-                       </div>
-
-
-                <div class="form-group">
+                    <label class="bg-success">Password</label>
+                    <input type="password" placeholder="password" class="form-control" />
+                </div>
+                 <div class="form-group">
                     <label class="bg-success">Select Date</label>
                     <div id="datepicker" class="input-group date" data-date-format="mm-dd-yyyy">
                         <input class="form-control" type="text" />
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </div>
-
-
-             <label class="bg-success">Gender</label><br />
-                <label>
-                    Male/Female
-                </label><br />
-                <div class="radio">
-                    <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-warning btn-sm">
-                            <input type="radio" name="gender" id="male">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-
-                        <label class="btn btn-danger btn-sm">
-                            <input type="radio" name="options" id="female">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-
-                    </div>
+                <div class="form-group">
+                    <label class="bg-success">Please Check What You Own</label><br />
+                    <input type="checkbox" id="car" name="property" />
+                    <label for="car" class="label-danger"></label><span>Car</span>
+                    <input type="checkbox" id="bike" name="property" />
+                    <label for="bike" class="label-danger"></label><span>Bike</span>
                 </div>
-                     <div class="form-group">
-                      <label class="bg-success">Password</label>
-                        <input type="password" placeholder="password" class="form-control" />
-                    </div>
+             <label class="bg-success">Gender</label><br />             
+                    <div class="radio">                      
+                            <input type="radio" name="gender" value="male" id="male1"/>
+                            <label for="male1" class="label-danger"></label>Male<br />
+                            <input type="radio" name="gender" value="female" id="female1" />
+                            <label for="female1" class="label-info"></label>Female                      
+                    </div> 
                     <center class="form-group">
                         <button class="btn btn-success">Register</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <button type="reset" id="reset" class="btn btn-danger">Reset</button>
                     </center>
-</form>
+        </form>
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="input-group"><input type="text" class="form-control" /><span class="input-group-addon"><i class="glyphicon glyphicon-alert"></i></span></div>
+        </div>
     </div>
 </body>
 </html>
