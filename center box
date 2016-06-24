@@ -1,0 +1,29 @@
+<html>
+<head>
+<style>
+.Center-Container {
+  position: relative;
+}
+
+.Absolute-Center {
+	background-color:green;
+	color:red;
+  width: 30%;
+  height: 30%;
+  overflow:  hidden;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+</style>
+</head>
+<body>
+<div class="Absolute-Center">
+
+<div class="Center-Container">frweSince the block is absolutely positioned and therefore out of the normal flow, the browser gives equal values to margin-top and margin-bottom centering the element in the bounds set earlier.
+W3.org: If none of the three [top, bottom, height] are ‘auto’: If both ‘margin-top’ and ‘margin-bottom’ are ‘auto’, solve the equation under the extra constraint that the two margins get equal values. AKA: center the block verticallyvgf</div>
+</div>
+
+
+</body>
+</html>
