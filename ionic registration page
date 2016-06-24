@@ -1,0 +1,27 @@
+  <div class="card padding" style="margin-top:25%;visibility:hidden;">
+                    <div class="center text-center">
+                        <img src="images/boy.svg" height="10%" width="20%" style="border-radius:60%;border:5px solid #eeeeee;">
+                    </div>
+                    <label class="item-input">
+                        UserName:
+                        <input type="text" placeholder="...">
+                    </label>
+                    <label class="item-input">
+                        Email:
+                        <input type="email" placeholder="...">
+                    </label>
+                    <label class="item-input">
+                        Password:
+                        <input type="password" placeholder="...">
+                    </label>
+                    <label class="item-input">
+                        Confirm Password:
+                        <input type="password" placeholder="...">
+                    </label>
+                    <div class="button-bar">
+                        <a class="button button-small button-royal">Register</a>
+                        <a class="button button-assertive button-small">Reset</a>
+                    </div>
+                </div>
+
+            </ion-content>
