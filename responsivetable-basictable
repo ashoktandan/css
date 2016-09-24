@@ -1,0 +1,539 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="testing.aspx.cs" Inherits="testing" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no" />
+    <title>Basic Table Demo</title>
+
+   <style>
+
+       /*
+ * jQuery Basic Table
+ * Author: Jerry Low
+ */
+
+table.bt thead,
+table.bt tbody th {
+  display: none;
+}
+
+table.bt tfoot th,
+table.bt tfoot td,
+table.bt tbody td {
+  border: none;
+  display: block;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  vertical-align: top;
+
+  /* IE 9 */
+  float: left\9;
+  width: 100%\9;
+}
+
+table.bt tfoot th::before,
+table.bt tfoot td::before,
+table.bt tbody td::before {
+  content: attr(data-th) ": ";
+  display: inline-block;
+  -webkit-flex-shrink: 0;
+  -ms-flex-shrink: 0;
+  flex-shrink: 0;
+  font-weight: bold;
+  width: 6.5em;
+}
+
+table.bt tfoot th.bt-hide,
+table.bt tfoot td.bt-hide,
+table.bt tbody td.bt-hide {
+  display: none;
+}
+
+table.bt tfoot th .bt-content,
+table.bt tfoot td .bt-content,
+table.bt tbody td .bt-content {
+  vertical-align: top;
+}
+
+.bt-wrapper.active {
+  max-height: 310px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+body {
+}
+
+   </style>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">/*
+ * jQuery Basic Table
+ * Author: Jerry Low
+ */(function (e) { e.fn.basictable = function (t) { var n = function (t, n) { var i = []; n.tableWrap && t.wrap('<div class="bt-wrapper"></div>'); var s = ""; t.find("thead tr th").length ? s = "thead th" : t.find("tbody tr th").length ? s = "tbody tr th" : t.find("th").length ? s = "tr:first th" : s = "tr:first td", e.each(t.find(s), function () { var t = e(this), n = parseInt(t.attr("colspan"), 10) || 1, r = t.closest("tr").index(); i[r] || (i[r] = []); for (var s = 0; s < n; s++) i[r].push(t) }), e.each(t.find("tbody tr"), function () { r(e(this), i, n) }), e.each(t.find("tfoot tr"), function () { r(e(this), i, n) }) }, r = function (t, n, r) { t.children().each(function () { var t = e(this); if (t.html() !== "" && t.html() !== "&nbsp;" || !!r.showEmptyCells) { var i = t.index(), s = ""; for (var o = 0; o < n.length; o++) { o != 0 && (s += ": "); var u = n[o][i]; s += u.text() } t.attr("data-th", s), r.contentWrap && !t.children().hasClass("bt-content") && t.wrapInner('<span class="bt-content" />') } else t.addClass("bt-hide") }) }, i = function (t) { e.each(t.find("td"), function () { var t = e(this), n = t.children(".bt-content").html(); t.html(n) }) }, s = function (t, n) { n.forceResponsive ? e(window).width() <= n.breakpoint ? o(t, n) : u(t, n) : t.removeClass("bt").outerWidth() > t.parent().width() ? o(t, n) : u(t, n) }, o = function (e, t) { e.addClass("bt"), t.tableWrap && e.parent(".bt-wrapper").addClass("active") }, u = function (e, t) { e.removeClass("bt"), t.tableWrap && e.parent(".bt-wrapper").removeClass("active") }, a = function (e, t) { e.find("td").removeAttr("data-th"), t.tableWrap && e.unwrap(), t.contentWrap && i(e), e.removeData("basictable") }, f = function (e) { e.data("basictable") && s(e, e.data("basictable")) }; this.each(function () { var r = e(this); if (r.length === 0 || r.data("basictable")) return r.data("basictable") && (t == "destroy" ? a(r, r.data("basictable")) : t === "start" ? o(r, r.data("basictable")) : t === "stop" ? u(r, r.data("basictable")) : s(r, r.data("basictable"))), !1; var i = e.extend({}, e.fn.basictable.defaults, t), l = { breakpoint: i.breakpoint, contentWrap: i.contentWrap, forceResponsive: i.forceResponsive, noResize: i.noResize, tableWrap: i.tableWrap, showEmptyCells: i.showEmptyCells }; r.data("basictable", l), n(r, r.data("basictable")), l.noResize || (s(r, r.data("basictable")), e(window).bind("resize.basictable", function () { f(r) })) }) }, e.fn.basictable.defaults = { breakpoint: 568, contentWrap: !0, forceResponsive: !0, noResize: !1, tableWrap: !1, showEmptyCells: !1 } })(jQuery);</script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table').basictable();
+
+            $('#table-breakpoint').basictable({
+                breakpoint: 768
+            });
+
+            $('#table-swap-axis').basictable({
+                swapAxis: true
+            });
+
+            $('#table-force-off').basictable({
+                forceResponsive: false
+            });
+
+            $('#table-no-resize').basictable({
+                noResize: true
+            });
+
+            $('#table-two-axis').basictable();
+
+            $('#table-max-height').basictable({
+                tableWrapper: true
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form id="form1" runat="server"></form>
+    <div id="page">
+        <h1>Basic Table Demo</h1>
+        <p>Demonstration of different settings for Basic Table. For full documentation of settings and method visit <a href="http://www.jerrylow.com/basictable" target="_blank">http://www.jerrylow.com/basictable</a> or <a href="https://github.com/jerrylow/basictable" target="_blank">https://github.com/jerrylow/basictable</a>.</p>
+
+        <h2>Basic Implementation</h2>
+        <p>The basic implementation using all default settigs. The table will use responsive mode when the viewport is less or equal to 568px in width.</p>
+
+        <table class="table table-striped" id="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Height</th>
+                    <th>Province</th>
+                    <th>Sport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jill Smith</td>
+                    <td>25</td>
+                    <td>Female</td>
+                    <td>5'4</td>
+                    <td>British Columbia</td>
+                    <td>Volleyball</td>
+                </tr>
+                <tr>
+                    <td>John Stone</td>
+                    <td>30</td>
+                    <td>Male</td>
+                    <td>5'9</td>
+                    <td>Ontario</td>
+                    <td>Badminton</td>
+                </tr>
+                <tr>
+                    <td>Jane Strip</td>
+                    <td>29</td>
+                    <td>Female</td>
+                    <td>5'6</td>
+                    <td>Manitoba</td>
+                    <td>Hockey</td>
+                </tr>
+                <tr>
+                    <td>Gary Mountain</td>
+                    <td>21</td>
+                    <td>Mail</td>
+                    <td>5'8</td>
+                    <td>Alberta</td>
+                    <td>Curling</td>
+                </tr>
+                <tr>
+                    <td>James Camera</td>
+                    <td>31</td>
+                    <td>Male</td>
+                    <td>6'1</td>
+                    <td>British Columbia</td>
+                    <td>Hiking</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <code class="js">
+            $('#table').basictable();
+        </code>
+
+        <h2>Modifying Breakpoint</h2>
+        <p>Manually set the breakpoint per table. Setting the breakpoint to 768px so responsive styles will be applied on a typically tablet, portrait mode.</p>
+
+        <table id="table-breakpoint">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Height</th>
+                    <th>Province</th>
+                    <th>Sport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jill Smith</td>
+                    <td>25</td>
+                    <td>Female</td>
+                    <td>5'4</td>
+                    <td>British Columbia</td>
+                    <td>Volleyball</td>
+                </tr>
+                <tr>
+                    <td>John Stone</td>
+                    <td>30</td>
+                    <td>Male</td>
+                    <td>5'9</td>
+                    <td>Ontario</td>
+                    <td>Badminton</td>
+                </tr>
+                <tr>
+                    <td>Jane Strip</td>
+                    <td>29</td>
+                    <td>Female</td>
+                    <td>5'6</td>
+                    <td>Manitoba</td>
+                    <td>Hockey</td>
+                </tr>
+                <tr>
+                    <td>Gary Mountain</td>
+                    <td>21</td>
+                    <td>Mail</td>
+                    <td>5'8</td>
+                    <td>Alberta</td>
+                    <td>Curling</td>
+                </tr>
+                <tr>
+                    <td>James Camera</td>
+                    <td>31</td>
+                    <td>Male</td>
+                    <td>6'1</td>
+                    <td>British Columbia</td>
+                    <td>Hiking</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <code class="js">
+            $('#table-breakpoint').basictable({<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;breakpoint: 768,<br />
+            });
+        </code>
+
+        <h2>Force Responsive Off</h2>
+
+        <p>The script will not force the table to be responsive. The table will only go into responsive mode when the table is actually larger than its parent container. In this demo the parent of table is the div with id page.</p>
+
+        <table id="table-force-off">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Height</th>
+                    <th>Province</th>
+                    <th>Sport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jill Smith</td>
+                    <td>25</td>
+                    <td>Female</td>
+                    <td>5'4</td>
+                    <td>British Columbia</td>
+                    <td>Volleyball</td>
+                </tr>
+                <tr>
+                    <td>John Stone</td>
+                    <td>30</td>
+                    <td>Male</td>
+                    <td>5'9</td>
+                    <td>Ontario</td>
+                    <td>Badminton</td>
+                </tr>
+                <tr>
+                    <td>Jane Strip</td>
+                    <td>29</td>
+                    <td>Female</td>
+                    <td>5'6</td>
+                    <td>Manitoba</td>
+                    <td>Hockey</td>
+                </tr>
+                <tr>
+                    <td>Gary Mountain</td>
+                    <td>21</td>
+                    <td>Mail</td>
+                    <td>5'8</td>
+                    <td>Alberta</td>
+                    <td>Curling</td>
+                </tr>
+                <tr>
+                    <td>James Camera</td>
+                    <td>31</td>
+                    <td>Male</td>
+                    <td>6'1</td>
+                    <td>British Columbia</td>
+                    <td>Hiking</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <code class="js">
+            $('#table-force-off').basictable({<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;forceResponsive: false,<br />
+            });
+        </code>
+
+        <h3>Max Height</h3>
+        <p>Some tables could get very long in responsive. You could set a max-height in mobile where scrolling within the table would happen. Turn on tableWrapper to get a container around the table that toggles an active class. You could also just create your own wrapper and match the breakpoint to do this.</p>
+
+        <table id="table-max-height" class="max-height">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Height</th>
+                    <th>Province</th>
+                    <th>Sport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jill Smith</td>
+                    <td>25</td>
+                    <td>Female</td>
+                    <td>5'4</td>
+                    <td>British Columbia</td>
+                    <td>Volleyball</td>
+                </tr>
+                <tr>
+                    <td>John Stone</td>
+                    <td>30</td>
+                    <td>Male</td>
+                    <td>5'9</td>
+                    <td>Ontario</td>
+                    <td>Badminton</td>
+                </tr>
+                <tr>
+                    <td>Jane Strip</td>
+                    <td>29</td>
+                    <td>Female</td>
+                    <td>5'6</td>
+                    <td>Manitoba</td>
+                    <td>Hockey</td>
+                </tr>
+                <tr>
+                    <td>Gary Mountain</td>
+                    <td>21</td>
+                    <td>Mail</td>
+                    <td>5'8</td>
+                    <td>Alberta</td>
+                    <td>Curling</td>
+                </tr>
+                <tr>
+                    <td>James Camera</td>
+                    <td>31</td>
+                    <td>Male</td>
+                    <td>6'1</td>
+                    <td>British Columbia</td>
+                    <td>Hiking</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <code class="js">
+            $('#table-max-height').basictable({<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;tableWrapper: true<br />
+            });
+        </code>
+
+        <h2>CSS Controls</h2>
+        <h3>Use Media Query Over JS Resize</h3>
+        <p>If you don't want to use the js bind on resize you can use css to control the breakpoint itself. Using basic table to setup the structure itself and copying basictable.css styles into your own media query.</p>
+
+        <table id="table-no-resize">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Height</th>
+                    <th>Province</th>
+                    <th>Sport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jill Smith</td>
+                    <td>25</td>
+                    <td>Female</td>
+                    <td>5'4</td>
+                    <td>British Columbia</td>
+                    <td>Volleyball</td>
+                </tr>
+                <tr>
+                    <td>John Stone</td>
+                    <td>30</td>
+                    <td>Male</td>
+                    <td>5'9</td>
+                    <td>Ontario</td>
+                    <td>Badminton</td>
+                </tr>
+                <tr>
+                    <td>Jane Strip</td>
+                    <td>29</td>
+                    <td>Female</td>
+                    <td>5'6</td>
+                    <td>Manitoba</td>
+                    <td>Hockey</td>
+                </tr>
+                <tr>
+                    <td>Gary Mountain</td>
+                    <td>21</td>
+                    <td>Mail</td>
+                    <td>5'8</td>
+                    <td>Alberta</td>
+                    <td>Curling</td>
+                </tr>
+                <tr>
+                    <td>James Camera</td>
+                    <td>31</td>
+                    <td>Male</td>
+                    <td>6'1</td>
+                    <td>British Columbia</td>
+                    <td>Hiking</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <code class="css">
+            @media only screen and (max-width: 568px) {<br />
+            &nbsp;&nbsp;#table-no-resize thead {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: none;<br />
+            &nbsp;&nbsp;}<br /><br />
+
+            &nbsp;&nbsp;#table-no-resize tbody td {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: none !important;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: block;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vertical-align: top;<br />
+            &nbsp;&nbsp;}<br /><br />
+
+            &nbsp;&nbsp;#table-no-resize tbody td:before {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: attr(data-th) ": ";<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: inline-block;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 6.5em;<br />
+            &nbsp;&nbsp;}<br /><br />
+
+            &nbsp;&nbsp;#table-no-resize tbody td.bt-hide {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: none;<br />
+            &nbsp;&nbsp;}<br />
+            }
+        </code>
+
+        <code class="js">
+            $('#table-no-resize').basictable({<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;noResize: true,<br />
+            });
+        </code>
+
+        <h3>Two Axis Styling</h3>
+        <p>Two axis could be styled differently. This does not need to be done through the library itself. The example code will show how to target the first column in desktop and first row in responsive mode.</p>
+
+        <table id="table-two-axis" class="two-axis">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Height</th>
+                    <th>Province</th>
+                    <th>Sport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jill Smith</td>
+                    <td>25</td>
+                    <td>Female</td>
+                    <td>5'4</td>
+                    <td>British Columbia</td>
+                    <td>Volleyball</td>
+                </tr>
+                <tr>
+                    <td>John Stone</td>
+                    <td>30</td>
+                    <td>Male</td>
+                    <td>5'9</td>
+                    <td>Ontario</td>
+                    <td>Badminton</td>
+                </tr>
+                <tr>
+                    <td>Jane Strip</td>
+                    <td>29</td>
+                    <td>Female</td>
+                    <td>5'6</td>
+                    <td>Manitoba</td>
+                    <td>Hockey</td>
+                </tr>
+                <tr>
+                    <td>Gary Mountain</td>
+                    <td>21</td>
+                    <td>Mail</td>
+                    <td>5'8</td>
+                    <td>Alberta</td>
+                    <td>Curling</td>
+                </tr>
+                <tr>
+                    <td>James Camera</td>
+                    <td>31</td>
+                    <td>Male</td>
+                    <td>6'1</td>
+                    <td>British Columbia</td>
+                    <td>Hiking</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <code class="css">
+            table.two-axis tr td:first-of-type {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;background: #dff1f7;<br />
+            }<br /><br />
+
+            @media only screen and (max-width: 568px) {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;table.two-axis tr td:first-of-type,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;table.two-axis tr:nth-of-type(2n+2) td:first-of-type,<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;table.two-axis tr td:first-of-type:before
+            {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #dff1f7;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #ffffff;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />
+
+            &nbsp;&nbsp;&nbsp;&nbsp;table.two-axis tr td:first-of-type {<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-bottom: 1px solid #e4ebeb;<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br />
+            }
+        </code>
+
+        <p class="credits"><span class="phone-block"><strong>Author:</strong> Jerry Low (<a href="https://twitter.com/jerrylowm" target="_blank">@jerrylowm</a>)</span><span class="phone-hide">&nbsp;&nbsp;|&nbsp;&nbsp;</span><span class="phone-block"><strong>Palette Design:</strong> Amit Jakhu (<a href="https://twitter.com/amitjakhu">@amitjakhu</a>)</span>
+    </div>
+</body>
+</html>
